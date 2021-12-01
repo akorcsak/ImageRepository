@@ -1,0 +1,55 @@
+﻿@{
+    Layout = null;
+}
+
+@section Scripts
+{
+    <link href="~/Content/Login.css" rel="stylesheet" type="text/css" />
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <link rel="stylesheet" href="~/Content/Login.css" type="text/css">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Bootstrap CSS -->
+</head>
+<body>
+    @using (Html.BeginForm("ValidateLogin", "Login"))
+    {
+        <div class="login-container">
+        <div class="wrapper fadeInDown">
+            <div id="formContent">
+                <!-- Tabs Titles -->
+                <!-- Icon -->
+                <div class="fadeIn first">
+                    <h1 style="height: 75px; top:2px"><b>Image Repository</b></h1>
+                    @*<img src="~/Images/logo.jpg" id="icon" style="height:75px; width: 140px; position: relative; top:2px">*@
+                </div>
+
+                <!-- Login Form -->
+                <form>
+                    <input type="email" id="user" class="fadeIn second" name="user" placeholder="login">
+                    <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+                    <input type="submit" class="fadeIn fourth" value="Log In">
+                </form>
+
+                <!-- Remind Passowrd -->
+                @*<div id="formFooter">
+            <a class="underlineHover" href="#">Forgot Password?</a>
+        </div>*@
+
+                <h3><strong>@TempData["Message"]</strong></h3>
+
+            </div>
+        </div>
+        </div>
+    }
+    </body>
+</html>

@@ -1,0 +1,109 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+
+div.search input[type="text"]{
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    border-radius: 12px;
+    outline: none;
+}
+
+div.container {
+    display: block;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+div.pagination-container {
+    display: block;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.crd-gen-ttl {
+    font-size: 45px;
+    font-weight: bold;
+    position: relative;
+    float:left;
+    top: 50px;
+}
+
+.tbl-spcng {
+    position: relative;
+    /*margin-top: 100px;*/
+}
+
+th {
+    text-align: center;
+}
+
+td {
+    text-align: left;
+}
+
+.tbl-clr {
+    background-color: rgba(52, 210, 89, 0.38);
+    color: black;
+    pointer-events: none;
+    cursor: default;
+}
+
+.rvrt-bttn {
+    background-color: rgba(223, 5, 5, 0.47);
+    color: black;
+}
+
+.dsbl-lnk {
+    pointer-events: none;
+    cursor: default;
+}
+.srt-bttn {
+    background-color: #C4C4C4;
+}
+
+input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    width: 80%;
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.input-icons i {
+    position: absolute;
+}
+
+.input-icons {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.icon {
+    padding: 10px;
+    margin: 5px;
+    min-width: 40px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+}
