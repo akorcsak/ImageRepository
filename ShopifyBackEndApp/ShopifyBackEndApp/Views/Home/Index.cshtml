@@ -14,14 +14,26 @@
 <div class="row">
     <div class="col-md-6">
         <h2>Upload Photos</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <form>
-            <input type="submit" value="Upload">
-        </form>
+
+        <div id="drop-area">
+            <form class="my-form">
+                <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
+                <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+                <div style="display:inline-block; margin-right:10px;">
+                    <label class="button" for="fileElem">Select some files</label>
+                </div>
+                <div style="display:inline-block;">
+                    <input class="button" type="submit" value="Upload">
+                </div>
+            </form>
+            <progress id="progress-bar" max=100 value=0></progress>
+
+            <div id="gallery"></div>
+        </div>
+
+
+
+
     </div>
     <div class="col-md-6">
         <h2>Delete Images</h2>
@@ -31,3 +43,122 @@
         </form>
     </div>
 </div>
+
+<script>
+    let dropArea = document.getElementById('drop-area')
+        ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, preventDefaults, false)
+        })
+
+    function preventDefaults(e) {
+        e.preventDefault()
+        e.stopPropagation()
+    }
+
+        ;['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false)
+        })
+
+        ;['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false)
+        })
+
+    function highlight(e) {
+        dropArea.classList.add('highlight')
+    }
+
+    function unhighlight(e) {
+        dropArea.classList.remove('highlight')
+    }
+
+    dropArea.addEventListener('drop', handleDrop, false)
+
+    function handleDrop(e) {
+        let dt = e.dataTransfer
+        let files = dt.files
+
+        handleFiles(files)
+    }
+
+    function handleFiles(files) {
+        files = [...files]
+        files.forEach(uploadFile)
+        files.forEach(previewFile)
+    }
+
+
+    function uploadFile(file) {
+        let url = 'YOUR URL HERE'
+        let formData = new FormData()
+
+        formData.append('file', file)
+
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(() => { /* Done. Inform the user */ })
+            .catch(() => { /* Error. Inform the user */ })
+    }
+
+    function previewFile(file) {
+        let reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onloadend = function () {
+            let img = document.createElement('img')
+            img.src = reader.result
+            document.getElementById('gallery').appendChild(img)
+        }
+    }
+
+    let uploadProgress = []
+    let progressBar = document.getElementById('progress-bar')
+
+    function initializeProgress(numFiles) {
+        progressBar.value = 0
+        uploadProgress = []
+
+        for (let i = numFiles; i > 0; i--) {
+            uploadProgress.push(0)
+        }
+    }
+
+    function updateProgress(fileNumber, percent) {
+        uploadProgress[fileNumber] = percent
+        let total = uploadProgress.reduce((tot, curr) => tot + curr, 0) / uploadProgress.length
+        progressBar.value = total
+    }
+
+
+    function handleFiles(files) {
+        files = [...files]
+        initializeProgress(files.length) // <- Add this line
+        files.forEach(uploadFile)
+        files.forEach(previewFile)
+    }
+
+    function uploadFile(file, i) { // <- Add `i` parameter
+        var url = 'YOUR URL HERE'
+        var xhr = new XMLHttpRequest()
+        var formData = new FormData()
+        xhr.open('POST', url, true)
+
+        // Add following event listener
+        xhr.upload.addEventListener("progress", function (e) {
+            updateProgress(i, (e.loaded * 100.0 / e.total) || 100)
+        })
+
+        xhr.addEventListener('readystatechange', function (e) {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // Done. Inform the user
+            }
+            else if (xhr.readyState == 4 && xhr.status != 200) {
+                // Error. Inform the user
+            }
+        })
+
+        formData.append('file', file)
+        xhr.send(formData)
+    }
+
+</script>
