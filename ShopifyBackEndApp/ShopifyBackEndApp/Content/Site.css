@@ -232,6 +232,12 @@ input[type="checkbox"] {
     /*right: 25px;*/
 }
 
+/*.jumbotron {
+    height: 2000px;
+}*/
+
+
+
 
 #myInput {
     background-image: url('/css/searchicon.png');
