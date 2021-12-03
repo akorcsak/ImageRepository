@@ -6,21 +6,24 @@
     if (Session["User"] != null)
     {
         <div style="padding-top: 100px;">
-            <div class="jumbotron" style="height:500px">
+            <div class="jumbotron" style="height:800px">
                 @{
-                    string userName = (string)Session["User"];
-                    string[] filePaths = Directory.GetFiles(Server.MapPath("~/Images/" + userName));
-                    List<ListItem> files = new List<ListItem>();
-                    foreach (string filePath in filePaths)
-                    {
-                        string fileName = Path.GetFileName(filePath);
-                        files.Add(new ListItem(fileName, "~/Images/" + fileName));
+                        string userName = (string)Session["User"];
+                        string[] filePaths = Directory.GetFiles(Server.MapPath("~/Images/" + userName));
+                        List<ListItem> files = new List<ListItem>();
+                        foreach (string filePath in filePaths)
+                        {
+                            string fileName = Path.GetFileName(filePath);
+                            files.Add(new ListItem(fileName, "~/Images/" + fileName));
+                            WebImage.GetImageFromRequest();
 
-                        <div class="col-md-4" @*style="float: left; display: inline-block;"*@ >
+                                    <div style="margin-bottom: 25px;" class="col-md-4" @*style="float: left; display: inline-block;"*@>
 
-                             <div>@fileName</div>
+                                        <img src="/images/@userName/@fileName" style="width: 300px; height:300px" />
+                                        <div>@fileName</div>
 
-                        </div>
+                                    </div>
+
                     }
                 }
             </div>
