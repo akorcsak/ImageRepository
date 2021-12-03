@@ -1,53 +1,80 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@*@model IEnumerable<ShopifyBackEndApp.Models.AccountImagesModel>*@
+@using System.Web.UI.WebControls;
 
-<div style="padding-top: 100px;">
-    <div class="jumbotron" style="height:500px">
-        @*<h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
-    </div>
-</div>
+@{
 
+    if (Session["User"] != null)
+    {
+        <div style="padding-top: 100px;">
+            <div class="jumbotron" style="height:500px">
+                @{
+                    string userName = (string)Session["User"];
+                    string[] filePaths = Directory.GetFiles(Server.MapPath("~/Images/" + userName));
+                    List<ListItem> files = new List<ListItem>();
+                    foreach (string filePath in filePaths)
+                    {
+                        string fileName = Path.GetFileName(filePath);
+                        files.Add(new ListItem(fileName, "~/Images/" + fileName));
 
-<div class="row">
-    <div class="col-md-6">
-        <h2>Upload Photos</h2>
+                        <div class="col-md-4" @*style="float: left; display: inline-block;"*@ >
 
-        <div id="drop-area">
-            <form class="my-form">
-                <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
-                <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
-                <div style="display:inline-block; margin-right:10px;">
-                    <label class="button" for="fileElem">Select some files</label>
-                </div>
-                <div style="display:inline-block;">
-                    <input id="upload" type="submit" value="Upload" disabled>
-                </div>
-            </form>
-            <progress id="progress-bar" max=100 value=0></progress>
+                             <div>@fileName</div>
 
-            <div id="gallery"></div>
+                        </div>
+                    }
+                }
+            </div>
         </div>
 
 
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Upload Photos</h2>
+
+                <div id="drop-area">
+                    <form class="my-form">
+                        <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
+                        <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+                        <div style="display:inline-block; margin-right:10px;">
+                            <label class="button" for="fileElem">Select some files</label>
+                        </div>
+                        <div style="display:inline-block;">
+                            <input id="upload" type="submit" value="Upload" disabled>
+                        </div>
+                    </form>
+                    <progress id="progress-bar" max=100 value=0></progress>
+
+                    <div id="gallery"></div>
+                </div>
 
 
-    </div>
-    <div class="col-md-6">
-        <h2>Delete Images</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <form>
-            <input type="submit" value="Delete" disabled>
-        </form>
-    </div>
-</div>
+
+
+            </div>
+            <div class="col-md-6">
+                <h2>Delete Images</h2>
+                <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+                <form>
+                    <input type="submit" value="Delete" disabled>
+                </form>
+            </div>
+        </div>
+
+    }
+
+    else
+    {
+        Layout = null;
+        Response.Redirect("~/Login/LoginPage");
+    }
+}
+
+
 
 <script>
     let dropArea = document.getElementById('drop-area')
         ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-        dropArea.addEventListener(eventName, preventDefaults, false)
+            dropArea.addEventListener(eventName, preventDefaults, false)
         })
 
     function preventDefaults(e) {
@@ -55,9 +82,9 @@
         e.stopPropagation()
     }
 
-        ;['dragenter', 'dragover'].forEach(eventName => {
-            dropArea.addEventListener(eventName, highlight, false)
-        })
+    ;['dragenter', 'dragover'].forEach(eventName => {
+        dropArea.addEventListener(eventName, highlight, false)
+    })
 
         ;['dragleave', 'drop'].forEach(eventName => {
             dropArea.addEventListener(eventName, unhighlight, false)
@@ -119,7 +146,7 @@
     }
 
     function uploadFile(file, i) { // <- Add `i` parameter
-        var url = 'YOUR URL HERE'
+        var url = '~/Home/About';
         var xhr = new XMLHttpRequest()
         var formData = new FormData()
         xhr.open('POST', url, true)
@@ -142,7 +169,7 @@
         formData.append('file', file)
 
 
-        //xhr.send(formData)
+        xhr.send(formData)
     }
 
 </script>

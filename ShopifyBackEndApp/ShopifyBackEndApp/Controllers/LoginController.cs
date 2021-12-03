@@ -9,6 +9,7 @@ using System.Diagnostics;
 using OriginalCardGen.Models;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 
 
 namespace OriginalCardGen.Controllers
@@ -71,6 +72,14 @@ namespace OriginalCardGen.Controllers
                 TempData["Message"] = "";
                 var test = db_user.Split('@')[0];
                 Session["usrName"] = test;
+
+                string path = @"C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\Images\" + db_user;
+
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
                 return Redirect("~/Home/Index");
             }
             TempData["Message"] = "The user or password are incorrect";
