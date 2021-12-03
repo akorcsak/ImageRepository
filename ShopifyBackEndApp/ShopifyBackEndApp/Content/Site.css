@@ -236,6 +236,14 @@ input[type="checkbox"] {
     height: 2000px;
 }*/
 
+
+div.pagination-container {
+    display: block;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 #drop-area {
     border: 2px dashed #ccc;
     border-radius: 20px;

@@ -6,26 +6,45 @@
     if (Session["User"] != null)
     {
         <div style="padding-top: 100px;">
-            <div class="jumbotron" style="height:800px">
+            <div class="jumbotron" style="height:825px">
                 @{
-                        string userName = (string)Session["User"];
-                        string[] filePaths = Directory.GetFiles(Server.MapPath("~/Images/" + userName));
-                        List<ListItem> files = new List<ListItem>();
-                        foreach (string filePath in filePaths)
-                        {
-                            string fileName = Path.GetFileName(filePath);
-                            files.Add(new ListItem(fileName, "~/Images/" + fileName));
-                            WebImage.GetImageFromRequest();
+                    string userName = (string)Session["User"];
+                    string[] filePaths = Directory.GetFiles(Server.MapPath("~/Images/" + userName));
+                    List<ListItem> files = new List<ListItem>();
+                    foreach (string filePath in filePaths)
+                    {
+                        string fileName = Path.GetFileName(filePath);
+                        files.Add(new ListItem(fileName, "~/Images/" + fileName));
+                        WebImage.GetImageFromRequest();
 
-                                    <div style="margin-bottom: 25px;" class="col-md-4" @*style="float: left; display: inline-block;"*@>
+                        <div style="margin-bottom: 25px;" class="col-md-4" @*style="float: left; display: inline-block;"*@>
 
-                                        <img src="/images/@userName/@fileName" style="width: 300px; height:300px" />
-                                        <div>@fileName</div>
+                            <img src="/images/@userName/@fileName" style="width: 300px; height:300px" />
+                            <div>@fileName</div>
 
-                                    </div>
+                        </div>
+
 
                     }
                 }
+
+
+                <div class='pagination-container'>
+                    <nav>
+                        <ul class="pagination">
+
+                            <li data-page="prev">
+                                <span> < <span class="sr-only">(current)</span></span>
+                            </li>
+                            <!--	Here the JS Function Will Add the Rows -->
+                            <li data-page="next" id="prev">
+                                <span> > <span class="sr-only">(current)</span></span>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+
             </div>
         </div>
 
@@ -56,11 +75,31 @@
             </div>
             <div class="col-md-6">
                 <h2>Delete Images</h2>
-                <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-                <form>
-                    <input type="submit" value="Delete" disabled>
-                </form>
-            </div>
+                <div class="jumbotron" style="padding-top: 15px; padding-bottom: 15px">
+                    <div style="display:flex">
+                        <div>Select All</div>
+                        <input class="form-check-input" type="checkbox" id="select_all" name="select_all">
+                    </div>
+                    <hr />
+                    @foreach (string filePath in filePaths)
+                    {
+                        string fileName = Path.GetFileName(filePath);
+                        files.Add(new ListItem(fileName, "~/Images/" + fileName));
+                        WebImage.GetImageFromRequest();
+
+                        <div style="display:flex">
+                            <div>@fileName</div>
+                            <input class="form-check-input" type="checkbox" id="@fileName" name="@fileName">
+                        </div>
+
+                    }
+                    <hr />
+                    <form>
+                        <input type="submit" value="Delete" disabled>
+                    </form>
+                </div>
+
+                </div>
         </div>
 
     }
