@@ -23,7 +23,7 @@
                     <label class="button" for="fileElem">Select some files</label>
                 </div>
                 <div style="display:inline-block;">
-                    <input class="button" type="submit" value="Upload">
+                    <input id="upload" type="submit" value="Upload" disabled>
                 </div>
             </form>
             <progress id="progress-bar" max=100 value=0></progress>
@@ -39,7 +39,7 @@
         <h2>Delete Images</h2>
         <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
         <form>
-            <input type="submit" value="Delete">
+            <input type="submit" value="Delete" disabled>
         </form>
     </div>
 </div>
@@ -80,34 +80,15 @@
         handleFiles(files)
     }
 
-    function handleFiles(files) {
-        files = [...files]
-        files.forEach(uploadFile)
-        files.forEach(previewFile)
-    }
-
-
-    function uploadFile(file) {
-        let url = 'YOUR URL HERE'
-        let formData = new FormData()
-
-        formData.append('file', file)
-
-        fetch(url, {
-            method: 'POST',
-            body: formData
-        })
-            .then(() => { /* Done. Inform the user */ })
-            .catch(() => { /* Error. Inform the user */ })
-    }
-
     function previewFile(file) {
         let reader = new FileReader()
         reader.readAsDataURL(file)
         reader.onloadend = function () {
             let img = document.createElement('img')
             img.src = reader.result
+            console.log(file);
             document.getElementById('gallery').appendChild(img)
+            document.getElementById('upload').disabled = false;
         }
     }
 
@@ -150,6 +131,7 @@
 
         xhr.addEventListener('readystatechange', function (e) {
             if (xhr.readyState == 4 && xhr.status == 200) {
+
                 // Done. Inform the user
             }
             else if (xhr.readyState == 4 && xhr.status != 200) {
@@ -158,7 +140,9 @@
         })
 
         formData.append('file', file)
-        xhr.send(formData)
+
+
+        //xhr.send(formData)
     }
 
 </script>
