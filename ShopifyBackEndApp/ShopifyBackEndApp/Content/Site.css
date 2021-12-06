@@ -88,11 +88,7 @@ input[type="radio"] {
     font-size: 34px;
     font-weight: bold;
 }
-input[type="checkbox"] {
-    display: inline-block;
-    position: absolute;
-    left: 30px;
-}
+
 .ui-datepicker-calendar {
     display: none;
 }
@@ -245,15 +241,18 @@ div.pagination-container {
 }
 
 
-div.ex1 {
-    height: 100px;
-    overflow-y: scroll;
+.ex1 {
+    border: 2px solid #ccc;
+    padding: 10px;
+    height: 150px;
+    overflow-y: scroll
 }
 
 div.ex2 {
     height: 675px;
     overflow-y: scroll;
 }
+
 
 #drop-area {
     border: 2px dashed #ccc;
