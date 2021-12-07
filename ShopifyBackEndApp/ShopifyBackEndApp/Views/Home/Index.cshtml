@@ -74,7 +74,7 @@
                             files.Add(new ListItem(fileName, "~/Images/" + fileName));
                             WebImage.GetImageFromRequest();
 
-                            <input type="checkbox" style="margin-right: 15px" id="@fileName" name="chk">@fileName <br />
+                            <input type="checkbox" style="margin-right: 15px" id="@fileName" name="chk" onclick="verifyCheckboxes()">@fileName <br />
 
 
                         }
@@ -82,7 +82,7 @@
                     <br />
 
                     <form>
-                        <input type="submit" value="Delete" disabled>
+                        <input type="submit" id="delete" value="Delete" disabled>
                     </form>
                 </div>
 
@@ -201,12 +201,37 @@
         xhr.send(formData)
     }
 
+        
+    document.getElementById('select_all').onclick = function() {
+        var checkboxes = document.getElementsByName('chk');
+        for (var checkbox of checkboxes) {
+            checkbox.checked = this.checked;
+        }
+        const cb = document.getElementById('select_all')
+        if (cb.checked) {
+            document.getElementById("delete").disabled = false;
+        }
+        else {
+            document.getElementById("delete").disabled = true;
+        }
+    }
 
-    function selects() {
-        var ele = document.getElementsByName("chk");
-        for (var i = 0; i < ele.length; i++) {
-            if (ele[i].type == 'checkbox')
-                ele[i].checked = true;
-        }  
+    function verifyCheckboxes() {
+        var numbCheck = false;
+        var checkboxes = document.getElementsByName('chk');
+        for (var checkbox of checkboxes) {
+            if (checkbox.checked) {
+                numbCheck = true;
+            }
+        }
+
+        if (numbCheck) {
+            document.getElementById("delete").disabled = false;
+        }
+        else {
+            document.getElementById("delete").disabled = true;
+        }
+
+    }
 
 </script>
