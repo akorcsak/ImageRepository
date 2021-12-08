@@ -25,28 +25,21 @@ namespace ShopifyBackEndApp.Controllers
             return View(files);
         }
 
-        public ActionResult DeleteFiles(string fileName)
+        public ActionResult DeleteFiles(string[] fileName)
         {
             string userName = (string)Session["User"];
             string[] filePaths = Directory.GetFiles(Server.MapPath("~/Images/" + userName));
             foreach (string filePath in filePaths)
             {
                 string file = Path.GetFileName(filePath);
-                if (file == fileName)
+                if (fileName.Contains(file))
                 {
                     System.IO.File.Delete(filePath);
                 }
-                Console.WriteLine($"{fileName} is deleted.");
             }
 
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

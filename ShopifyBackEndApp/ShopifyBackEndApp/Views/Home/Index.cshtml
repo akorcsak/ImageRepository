@@ -251,18 +251,18 @@
 
 
     function deleteImages() {
+        var fileList = [];
         var checkboxes = document.getElementsByName('chk');
         for (var checkbox of checkboxes) {
             if (checkbox.checked) {
-                console.log(checkbox.value);
-                var name = checkbox.value;
+                fileList.push(checkbox.value);
             }
         }
 
         $.ajax({
             type: "POST",
             url: "/Home/DeleteFiles/",
-            data: { fileName: name },
+            data: { fileName: fileList },
             success: function (result) {
                 console.log("Succesful!")
             }
