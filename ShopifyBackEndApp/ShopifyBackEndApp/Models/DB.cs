@@ -14,11 +14,6 @@ namespace OriginalCardGen.Models
         {
         }
 
-        //public DbSet<EmployeeCardToBeGenTable> EmployeeCardToBeGenTables { get; set; }
-        //public DbSet<StudentCardToBeGenTable> StudentCardToBeGenTables { get; set; }
-
-        //public DbSet<StudentResubmissionTable> StudentResubmissionTables { get; set; }
-
-        public DbSet<LoginTable> AccountTable { get; set; }
+        public DbSet<AccountTable> AccountTables { get; set; }
     }
 }

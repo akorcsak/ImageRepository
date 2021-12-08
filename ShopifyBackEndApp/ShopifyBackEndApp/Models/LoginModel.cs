@@ -6,7 +6,7 @@ using System.Web;
 
 namespace OriginalCardGen.Models
 {
-    public class LoginTable
+    public class AccountTable
     {
         [Key]
         public int Id { get; set; }
