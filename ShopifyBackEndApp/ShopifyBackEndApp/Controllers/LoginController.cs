@@ -30,18 +30,18 @@ namespace OriginalCardGen.Controllers
                 TempData["Message"] = "the fields cannot be empty";
                 return View("LoginPage");
             }
-            var q = _db.LoginTables;
+            var q = _db.AccountTable;
 
             SqlConnection sqlConn = new SqlConnection(GlobalVariables.sqlConnStr);
             SqlCommand sqlComm = new SqlCommand();
             sqlComm = sqlConn.CreateCommand();
             var encodedPass = Convert.ToBase64String(Encoding.UTF8.GetBytes(password));
             DataTable dt = new DataTable();
-            SqlCommand getCredentials = new SqlCommand("select userEmail, userPass, userRole, isActive from dbo.LoginTables where userEmail= '" + user + "' and userPass = '" + encodedPass + "'", sqlConn);
+            SqlCommand getCredentials = new SqlCommand("select userEmail, userPass from dbo.AccountTable where userEmail= '" + user + "' and userPass = '" + encodedPass + "'", sqlConn);
             sqlConn.Open();
             var db_user = "";
             var db_pass = "";
-            var db_role = "";
+            //var db_role = "";
             var db_active = false;
             SqlDataReader reader = getCredentials.ExecuteReader();
 
@@ -50,8 +50,8 @@ namespace OriginalCardGen.Controllers
             {
                 db_user = reader.GetString(0);
                 db_pass = reader.GetString(1);
-                db_role = reader.GetString(2);
-                db_active = reader.GetBoolean(3);
+                //db_role = reader.GetString(2);
+                //db_active = reader.GetBoolean(3);
                 if (db_pass != null)
                 {
                     decodedString = Encoding.UTF8.GetString(Convert.FromBase64String(db_pass));
@@ -67,8 +67,8 @@ namespace OriginalCardGen.Controllers
                 GlobalVariables.isSeshActive = true;
                 Session["User"] = db_user;
                 Session["CurrentPass"] = decodedString;
-                Session["Role"] = db_role;
-                Session["isActive"] = db_active;
+                //Session["Role"] = db_role;
+                //Session["isActive"] = db_active;
                 TempData["Message"] = "";
                 var test = db_user.Split('@')[0];
                 Session["usrName"] = test;
@@ -99,13 +99,13 @@ namespace OriginalCardGen.Controllers
         [HttpGet]
         public ActionResult ChangePass(string crntPass, string newPass)
         {
-            var q = _db.LoginTables;
+            var q = _db.AccountTable;
 
             SqlConnection sqlConn = new SqlConnection(GlobalVariables.sqlConnStr);
             SqlCommand sqlComm = new SqlCommand();
             sqlComm = sqlConn.CreateCommand();
 
-            SqlCommand checkPass = new SqlCommand("select UserEmail from dbo.LoginTables where userEmail = @userEmail and userPass = @currentPass", sqlConn);
+            SqlCommand checkPass = new SqlCommand("select UserEmail from dbo.AccountTable where userEmail = @userEmail and userPass = @currentPass", sqlConn);
             checkPass.Parameters.Add("@userEmail", SqlDbType.NVarChar);
             checkPass.Parameters["@userEmail"].Value = Session["User"];
 
@@ -120,9 +120,9 @@ namespace OriginalCardGen.Controllers
             }
             sqlConn.Close();
 
-            if(isValid != "")
+            if (isValid != "")
             {
-                sqlComm.CommandText = "update LoginTables set userPass = @encryptedPass where userEmail = @userEmail";
+                sqlComm.CommandText = "update Accounts set userPass = @encryptedPass where userEmail = @userEmail";
 
                 sqlComm.Parameters.Add("@encryptedPass", SqlDbType.NVarChar);
                 sqlComm.Parameters["@encryptedPass"].Value = Convert.ToBase64String(Encoding.UTF8.GetBytes(newPass));
@@ -149,7 +149,7 @@ namespace OriginalCardGen.Controllers
         [HttpGet]
         public ActionResult AddUser(string email, string role, string temp_pass, string conf_temp)
         {
-            var q = _db.LoginTables;
+            var q = _db.AccountTable;
 
             var encodedPass = Convert.ToBase64String(Encoding.UTF8.GetBytes(temp_pass));
 
@@ -157,7 +157,6 @@ namespace OriginalCardGen.Controllers
             {
                 userEmail = email,
                 userPass = encodedPass,
-                userRole = role,
             });
 
             _db.SaveChanges();
@@ -171,14 +170,14 @@ namespace OriginalCardGen.Controllers
         public ActionResult DeleteUser(string Id)
         {
 
-            var q = _db.LoginTables;
+            var q = _db.AccountTable;
 
             SqlConnection sqlConn = new SqlConnection(GlobalVariables.sqlConnStr);
             SqlCommand sqlComm = new SqlCommand();
             sqlComm = sqlConn.CreateCommand();
 
 
-            sqlComm.CommandText = @"delete from dbo.LoginTables where Id = " + Id;
+            sqlComm.CommandText = @"delete from dbo.Accounts where Id = " + Id;
 
 
             sqlConn.Open();
@@ -188,5 +187,42 @@ namespace OriginalCardGen.Controllers
             return Redirect("~/Home/Admin/");
         }
 
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+
+        public ActionResult ValidateRegistration(string user, string firstpassword, string secondpassword)
+        {
+            if ((user == "" || user == null) || (firstpassword == "" || firstpassword == null) || (secondpassword == "" || secondpassword == null))
+            {
+                TempData["Message"] = "The fields cannot be empty";
+                return View("Register");
+            }
+            else if (firstpassword != secondpassword)
+            {
+                TempData["Message"] = "Passwords don't match!";
+                return View("Register");
+            }
+
+            SqlConnection sqlConn = new SqlConnection(GlobalVariables.sqlConnStr);
+            SqlCommand getCredentials = new SqlCommand("select userEmail from dbo.AccountTable where userEmail= '" + user + "'", sqlConn);
+            sqlConn.Open();
+
+            SqlDataReader reader = getCredentials.ExecuteReader();
+
+            if (reader.Read())
+            {
+                TempData["Message"] = "Email is already registered!";
+                sqlConn.Close();
+                return View("Register");
+            }
+
+            sqlConn.Close();
+
+            TempData["Message"] = "User has been succesfully created! You can now log in with the new credentials.";
+            return View("LoginPage");
+        }
     }
 }

@@ -19,6 +19,6 @@ namespace OriginalCardGen.Models
 
         //public DbSet<StudentResubmissionTable> StudentResubmissionTables { get; set; }
 
-        public DbSet<LoginTable> LoginTables { get; set; }
+        public DbSet<LoginTable> AccountTable { get; set; }
     }
 }
