@@ -21,17 +21,22 @@ namespace ShopifyBackEndApp.Controllers
                 files.Add(new ListItem(fileName, "~/Images/" + fileName));
             }
 
-            //Images imageAccount = new Images
-            //{
-
-            //}
 
             return View(files);
         }
 
-        public ActionResult About()
+        public ActionResult DeleteFiles(string fileName)
         {
-            ViewBag.Message = "Your application description page.";
+            string userName = (string)Session["User"];
+            string[] files = Directory.GetFiles(Server.MapPath("~/Images/" + userName));
+            foreach (string file in files)
+            {
+                if (file == fileName)
+                {
+                    System.IO.File.Delete(fileName);
+                }
+                Console.WriteLine($"{fileName} is deleted.");
+            }
 
             return View();
         }
