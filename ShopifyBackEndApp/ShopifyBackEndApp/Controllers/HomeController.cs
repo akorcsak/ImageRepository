@@ -28,12 +28,13 @@ namespace ShopifyBackEndApp.Controllers
         public ActionResult DeleteFiles(string fileName)
         {
             string userName = (string)Session["User"];
-            string[] files = Directory.GetFiles(Server.MapPath("~/Images/" + userName));
-            foreach (string file in files)
+            string[] filePaths = Directory.GetFiles(Server.MapPath("~/Images/" + userName));
+            foreach (string filePath in filePaths)
             {
+                string file = Path.GetFileName(filePath);
                 if (file == fileName)
                 {
-                    System.IO.File.Delete(fileName);
+                    System.IO.File.Delete(filePath);
                 }
                 Console.WriteLine($"{fileName} is deleted.");
             }
