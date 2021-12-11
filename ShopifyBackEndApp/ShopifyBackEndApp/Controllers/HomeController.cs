@@ -41,16 +41,12 @@ namespace ShopifyBackEndApp.Controllers
             return View();
         }
 
-        //public ActionResult UploadFiles(object formData)
-        //{
-        //    return View();
-        //}
-        
 
         public ActionResult UploadFiles(HttpPostedFileBase studImg)
         {
             var fileName = Path.GetFileName(studImg.FileName);
             studImg.SaveAs(Path.Combine(@"C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\Images\akorc@uoguelph.ca", fileName));
+
             return View();
         }
 

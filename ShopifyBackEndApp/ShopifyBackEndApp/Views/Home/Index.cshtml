@@ -35,30 +35,6 @@
         </div>
 
         <div class="row">
-            @*<div class="col-md-6">
-            <h2>Upload Photos</h2>
-
-            <div id="drop-area">
-                <form class="my-form" enctype="multipart/form-data">
-                    <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
-                    <input type="file" name="fileElem" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
-                    <div style="display:inline-block; margin-right:10px;">
-                        <label class="button" for="fileElem">Select some files</label>
-                    </div>
-                    <div style="display:inline-block;">
-                        <input id="upload" type="button" value="Save" onlick="SaveStundent()">
-                        <input type="button" value="Upload" onclick="saveFile()" />
-                    </div>
-                </form>
-                <progress id="progress-bar" max=100 value=0></progress>
-
-                <div id="gallery"></div>
-            </div>
-
-
-
-
-        </div>*@
             <div class="col-md-6">
                 <h2>Upload Photos</h2>
                 <div id="drop-area">
@@ -78,29 +54,6 @@
                 </div>
             </div>
 
-
-                <script>
-
-    function SaveStundent () {
-        console.log("Hello!!!!");
-        @*var formData = new FormData();
-        var file = document.getElementById("studImg").files[0];
-        formData.append("studImg", file);
-
-        //var Name = $('#txtName').val().trim()
-        //formData.append("Name", Name);
-
-        $.ajax({
-        type: "POST",
-        url: "@(Url.Action("CreateStudent", "Home"))",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-            }
-        });*@
-    }
-                </script>
 
 
                 <div class="col-md-6">
@@ -220,8 +173,6 @@
 
     function uploadFile(file, i) { // <- Add `i` parameter
         var xhr = new XMLHttpRequest()
-        //var formData = new FormData()
-        //xhr.open('POST', '/Home/UploadFiles/', true)
 
         // Add following event listener
         xhr.upload.addEventListener("progress", function (e) {
@@ -238,11 +189,6 @@
             }
         })
 
-        //formData.append('file', file)
-        //console.log(file);
-        //console.log(FormData);
-
-        //xhr.send(formData)
     }
 
 
@@ -252,9 +198,6 @@
         var file = document.getElementById("studImg").files[0];
         console.log("This is the file: " + file);
         formData.append("studImg", file);
-
-        //var Name = $('#txtName').val().trim()
-        //formData.append("Name", Name);
 
         $.ajax({
         type: "POST",
