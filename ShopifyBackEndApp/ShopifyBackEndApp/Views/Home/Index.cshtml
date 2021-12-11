@@ -35,44 +35,60 @@
         </div>
 
         <div class="row">
+            @*<div class="col-md-6">
+            <h2>Upload Photos</h2>
+
+            <div id="drop-area">
+                <form class="my-form" enctype="multipart/form-data">
+                    <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
+                    <input type="file" name="fileElem" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+                    <div style="display:inline-block; margin-right:10px;">
+                        <label class="button" for="fileElem">Select some files</label>
+                    </div>
+                    <div style="display:inline-block;">
+                        <input id="upload" type="button" value="Save" onlick="SaveStundent()">
+                        <input type="button" value="Upload" onclick="saveFile()" />
+                    </div>
+                </form>
+                <progress id="progress-bar" max=100 value=0></progress>
+
+                <div id="gallery"></div>
+            </div>
+
+
+
+
+        </div>*@
             <div class="col-md-6">
                 <h2>Upload Photos</h2>
-
                 <div id="drop-area">
-                    <form class="my-form">
+                    <form class="my-form" enctype="multipart/form-data">
                         <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
-                        <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+                        <input type="file" name="studImg" id="studImg" multiple accept="image/*" style="display: none" onchange="handleFiles(this.files)"/>
                         <div style="display:inline-block; margin-right:10px;">
-                            <label class="button" for="fileElem">Select some files</label>
+                            <label class="button" for="studImg">Select some files</label>
                         </div>
                         <div style="display:inline-block;">
-                            <input id="upload" type="submit" value="Upload" disabled>
+                            <input id="upload" type="button" value="Save" onclick="saveFile()" disabled/>
                         </div>
                     </form>
                     <progress id="progress-bar" max=100 value=0></progress>
 
                     <div id="gallery"></div>
                 </div>
-
-
-
-
             </div>
 
-            <form id="frm" enctype="multipart/form-data">
-                <input type="file" name="studImg" id="studImg" />
-                <input type="text" name="txtName" id="txtName" />
-                <input type="button" value="Save" onclick="SaveStundent()" />
-            </form>
 
-            <script>
+                <script>
+
     function SaveStundent () {
-        var formData = new FormData();
+        console.log("Hello!!!!");
+        @*var formData = new FormData();
         var file = document.getElementById("studImg").files[0];
         formData.append("studImg", file);
 
-        var Name = $('#txtName').val().trim()
-        formData.append("Name", Name);
+        //var Name = $('#txtName').val().trim()
+        //formData.append("Name", Name);
 
         $.ajax({
         type: "POST",
@@ -82,52 +98,52 @@
         contentType: false,
         success: function (response) {
             }
-        });
+        });*@
     }
-            </script>
+                </script>
 
 
-            <div class="col-md-6">
-                <h2>Delete Images</h2>
-                <div class="jumbotron" style="padding-top: 15px; padding-bottom: 15px">
-                    <div style="padding: 12px; padding-bottom: 0px">
-                        <input type="checkbox" style="margin-right: 15px" id="select_all" name="select_all"> <b>Select All</b> <br />
+                <div class="col-md-6">
+                    <h2>Delete Images</h2>
+                    <div class="jumbotron" style="padding-top: 15px; padding-bottom: 15px">
+                        <div style="padding: 12px; padding-bottom: 0px">
+                            <input type="checkbox" style="margin-right: 15px" id="select_all" name="select_all"> <b>Select All</b> <br />
+                        </div>
+                        <br />
+                        <div class="ex1">
+                            @foreach (string filePath in filePaths)
+                            {
+                                string fileName = Path.GetFileName(filePath);
+                                files.Add(new ListItem(fileName, "~/Images/" + fileName));
+                                WebImage.GetImageFromRequest();
+
+                                <input type="checkbox" style="margin-right: 15px" id="@fileName" name="chk" value="@fileName" onclick="verifyCheckboxes()">@fileName <br />
+
+
+                            }
+                        </div>
+                        <br />
+
+                        <form>
+                            <input type="submit" id="delete" value="Delete" onclick="deleteImages()" disabled>
+                        </form>
                     </div>
-                    <br />
-                    <div class="ex1">
-                        @foreach (string filePath in filePaths)
-                        {
-                            string fileName = Path.GetFileName(filePath);
-                            files.Add(new ListItem(fileName, "~/Images/" + fileName));
-                            WebImage.GetImageFromRequest();
 
-                            <input type="checkbox" style="margin-right: 15px" id="@fileName" name="chk" value="@fileName" onclick="verifyCheckboxes()">@fileName <br />
-
-
-                        }
-                    </div>
-                    <br />
-
-                    <form>
-                        <input type="submit" id="delete" value="Delete" onclick="deleteImages()" disabled>
-                    </form>
                 </div>
-
             </div>
-        </div>
 
-    }
+            }
 
-    else
-    {
-        Layout = null;
-        Response.Redirect("~/Login/LoginPage");
-    }
-}
-
+            else
+            {
+            Layout = null;
+            Response.Redirect("~/Login/LoginPage");
+            }
+            }
 
 
-<script>
+
+            <script>
     let dropArea = document.getElementById('drop-area')
         ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
             dropArea.addEventListener(eventName, preventDefaults, false)
@@ -204,8 +220,8 @@
 
     function uploadFile(file, i) { // <- Add `i` parameter
         var xhr = new XMLHttpRequest()
-        var formData = new FormData()
-        xhr.open('POST', '/Home/UploadFiles/', true)
+        //var formData = new FormData()
+        //xhr.open('POST', '/Home/UploadFiles/', true)
 
         // Add following event listener
         xhr.upload.addEventListener("progress", function (e) {
@@ -222,14 +238,36 @@
             }
         })
 
-        formData.append('file', file)
-        console.log(file);
-        console.log(FormData);
+        //formData.append('file', file)
+        //console.log(file);
+        //console.log(FormData);
 
-        xhr.send(formData)
+        //xhr.send(formData)
     }
 
-        
+
+    function saveFile() {
+        console.log("Hello!");
+        var formData = new FormData();
+        var file = document.getElementById("studImg").files[0];
+        console.log("This is the file: " + file);
+        formData.append("studImg", file);
+
+        //var Name = $('#txtName').val().trim()
+        //formData.append("Name", Name);
+
+        $.ajax({
+        type: "POST",
+        url: "@(Url.Action("UploadFiles", "Home"))",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            }
+        });
+    }
+
+
     document.getElementById('select_all').onclick = function() {
         var checkboxes = document.getElementsByName('chk');
         for (var checkbox of checkboxes) {
@@ -282,4 +320,4 @@
         })
     }
 
-</script>
+            </script>
