@@ -59,6 +59,33 @@
 
             </div>
 
+            <form id="frm" enctype="multipart/form-data">
+                <input type="file" name="studImg" id="studImg" />
+                <input type="text" name="txtName" id="txtName" />
+                <input type="button" value="Save" onclick="SaveStundent()" />
+            </form>
+
+            <script>
+    function SaveStundent () {
+        var formData = new FormData();
+        var file = document.getElementById("studImg").files[0];
+        formData.append("studImg", file);
+
+        var Name = $('#txtName').val().trim()
+        formData.append("Name", Name);
+
+        $.ajax({
+        type: "POST",
+        url: "@(Url.Action("CreateStudent", "Home"))",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            }
+        });
+    }
+            </script>
+
 
             <div class="col-md-6">
                 <h2>Delete Images</h2>
@@ -74,7 +101,7 @@
                             files.Add(new ListItem(fileName, "~/Images/" + fileName));
                             WebImage.GetImageFromRequest();
 
-                            <input type="checkbox" style="margin-right: 15px" id="@fileName"  name="chk" value="@fileName" onclick="verifyCheckboxes()">@fileName <br />
+                            <input type="checkbox" style="margin-right: 15px" id="@fileName" name="chk" value="@fileName" onclick="verifyCheckboxes()">@fileName <br />
 
 
                         }
@@ -176,10 +203,9 @@
     }
 
     function uploadFile(file, i) { // <- Add `i` parameter
-        var url = '/Home/Index/';
         var xhr = new XMLHttpRequest()
         var formData = new FormData()
-        xhr.open('POST', url, true)
+        xhr.open('POST', '/Home/UploadFiles/', true)
 
         // Add following event listener
         xhr.upload.addEventListener("progress", function (e) {
@@ -197,7 +223,8 @@
         })
 
         formData.append('file', file)
-
+        console.log(file);
+        console.log(FormData);
 
         xhr.send(formData)
     }
