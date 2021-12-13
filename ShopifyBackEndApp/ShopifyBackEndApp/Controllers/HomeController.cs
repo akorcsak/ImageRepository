@@ -40,13 +40,19 @@ namespace ShopifyBackEndApp.Controllers
 
             return View();
         }
+        //HttpPostedFileBase formData
 
-
-        public ActionResult UploadFiles(HttpPostedFileBase studImg)
+        public ActionResult UploadFiles()
         {
-            string userName = (string)Session["User"];
-            var fileName = Path.GetFileName(studImg.FileName);
-            studImg.SaveAs(Path.Combine(@"C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\Images\" + userName, fileName));
+            if (Request.Files.Count > 0)
+            {
+                string userName = (string)Session["User"];
+                for (int i = 0; i < Request.Files.Count; i++)
+                {
+                    var fileName = Path.GetFileName(Request.Files[i].FileName);
+                    Request.Files[i].SaveAs(Path.Combine(@"C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\Images\" + userName, fileName));
+                }
+            }
 
             return RedirectToAction("Index");
         }

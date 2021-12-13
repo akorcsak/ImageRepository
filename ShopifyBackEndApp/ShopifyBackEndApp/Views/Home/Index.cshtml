@@ -193,11 +193,12 @@
 
 
     function saveFile() {
-        console.log("Hello!");
         var formData = new FormData();
-        var file = document.getElementById("studImg").files[0];
-        console.log("This is the file: " + file);
-        formData.append("studImg", file);
+
+        var fileNumber = document.getElementById("studImg").files.length;
+        for (let i = 0; i < fileNumber; i++) {
+            formData.append(document.getElementById("studImg").files[i].name, document.getElementById("studImg").files[i]);
+        }
 
         $.ajax({
         type: "POST",
