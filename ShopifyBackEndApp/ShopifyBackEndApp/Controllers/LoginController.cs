@@ -241,7 +241,7 @@ namespace OriginalCardGen.Controllers
 
 
 
-            TempData["Message"] = "User has been succesfully created! You can now log in with the new credentials.";
+            TempData["Message_Green"] = "User has been succesfully created! You can now log in with the new credentials.";
             return View("LoginPage");
         }
     }
