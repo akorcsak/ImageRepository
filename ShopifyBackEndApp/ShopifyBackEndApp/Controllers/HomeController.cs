@@ -44,10 +44,11 @@ namespace ShopifyBackEndApp.Controllers
 
         public ActionResult UploadFiles(HttpPostedFileBase studImg)
         {
+            string userName = (string)Session["User"];
             var fileName = Path.GetFileName(studImg.FileName);
-            studImg.SaveAs(Path.Combine(@"C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\Images\akorc@uoguelph.ca", fileName));
+            studImg.SaveAs(Path.Combine(@"C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\Images\" + userName, fileName));
 
-            return View();
+            return RedirectToAction("Index");
         }
 
     }
