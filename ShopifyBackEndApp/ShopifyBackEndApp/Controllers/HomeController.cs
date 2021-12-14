@@ -40,7 +40,6 @@ namespace ShopifyBackEndApp.Controllers
 
             return View();
         }
-        //HttpPostedFileBase formData
 
         public ActionResult UploadFiles()
         {

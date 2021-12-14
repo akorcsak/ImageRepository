@@ -196,8 +196,11 @@
         var formData = new FormData();
 
         var fileNumber = document.getElementById("studImg").files.length;
+        console.log(fileNumber);
         for (let i = 0; i < fileNumber; i++) {
             formData.append(document.getElementById("studImg").files[i].name, document.getElementById("studImg").files[i]);
+            console.log(document.getElementById("studImg").files[i].name);
+            console.log(document.getElementById("studImg").files[i]);
         }
 
         $.ajax({
