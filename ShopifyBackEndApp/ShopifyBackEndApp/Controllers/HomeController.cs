@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using OriginalCardGen.Models;
 
 namespace ShopifyBackEndApp.Controllers
 {
@@ -17,12 +18,12 @@ namespace ShopifyBackEndApp.Controllers
         public ActionResult Index()
         {
             string userName = (string)Session["User"];
-            string[] filePaths = Directory.GetFiles(Server.MapPath("~/ImageRepo/Images/" + userName));
+            string[] filePaths = Directory.GetFiles(Server.MapPath(GlobalVariables.deployedPathFiles + "/Images/" + userName));
             List<ListItem> files = new List<ListItem>();
             foreach (string filePath in filePaths)
             {
                 string fileName = Path.GetFileName(filePath);
-                files.Add(new ListItem(fileName, "~/Images/" + fileName));
+                files.Add(new ListItem(fileName, GlobalVariables.deployedPathFiles + "/Images/" + fileName));
             }
 
 
@@ -32,7 +33,7 @@ namespace ShopifyBackEndApp.Controllers
         public ActionResult DeleteFiles(string[] fileName)
         {
             string userName = (string)Session["User"];
-            string[] filePaths = Directory.GetFiles(Server.MapPath("~/ImageRepo/Images/" + userName));
+            string[] filePaths = Directory.GetFiles(Path.Combine(Server.MapPath(GlobalVariables.deployedPathFiles + "/Images"), userName));
             foreach (string filePath in filePaths)
             {
                 string file = Path.GetFileName(filePath);
@@ -53,7 +54,7 @@ namespace ShopifyBackEndApp.Controllers
                 for (int i = 0; i < Request.Files.Count; i++)
                 {
                     var fileName = Path.GetFileName(Request.Files[i].FileName);
-                    Request.Files[i].SaveAs(Path.Combine(Server.MapPath("~/ImageRepo/Images"), userName, fileName));
+                    Request.Files[i].SaveAs(Path.Combine(Server.MapPath(GlobalVariables.deployedPathFiles + "/Images"), userName, fileName));
                 }
             }
 

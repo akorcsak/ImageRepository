@@ -42,7 +42,7 @@ namespace OriginalCardGen.Controllers
             var db_user = "";
             var db_pass = "";
             //var db_role = "";
-            var db_active = false;
+
             SqlDataReader reader = getCredentials.ExecuteReader();
 
             string decodedString = "";
@@ -73,7 +73,7 @@ namespace OriginalCardGen.Controllers
                 var test = db_user.Split('@')[0];
                 Session["usrName"] = test;
 
-                string path = Path.Combine(Server.MapPath("~/ImageRepo/Images"), db_user);
+                string path = Path.Combine(Server.MapPath(GlobalVariables.deployedPathFiles + "/Images"), db_user);
 
                 if (!Directory.Exists(path))
                 {

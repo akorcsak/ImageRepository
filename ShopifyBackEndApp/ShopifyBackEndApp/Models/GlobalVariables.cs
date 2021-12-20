@@ -5,11 +5,13 @@ using System.Web;
 
 namespace OriginalCardGen.Models
 {
-    public class GlobalVariables
+    public static class GlobalVariables
     {
         private static string sql_conn_str = "Data Source=SQL;Initial Catalog=ShopifyImageRepository;User ID=sa;Password=superior";
 
         //private static string oracle_conn_str = "Dsn=OracleGold;uid=virania;Pwd=Hos!2020;Trusted_Connection=Yes;";
+
+        public const string deployedPathFiles = "~/ImageRepo";
 
         public static bool sessionStatus = false;
 

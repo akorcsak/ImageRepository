@@ -1,9 +1,10 @@
 ﻿@*@model IEnumerable<ShopifyBackEndApp.Models.AccountImagesModel>*@
 @using System.Web.UI.WebControls;
+@using OriginalCardGen.Models;;
 
 @{
 
-    if (Session["User"] != null)
+if (Session["User"] != null)
     {
 
         <div style="padding-top: 100px;">
@@ -11,17 +12,17 @@
                 <div class="ex2">
                     @{
                         string userName = (string)Session["User"];
-                        string[] filePaths = Directory.GetFiles(Server.MapPath("~/ImageRepo/Images/" + userName));
+                        string[] filePaths = Directory.GetFiles(Server.MapPath(GlobalVariables.deployedPathFiles + "/Images/" + userName));
                         List<ListItem> files = new List<ListItem>();
                         foreach (string filePath in filePaths)
                         {
                             string fileName = Path.GetFileName(filePath);
-                            files.Add(new ListItem(fileName, "~/ImageRepo/Images/" + fileName));
+                            files.Add(new ListItem(fileName, GlobalVariables.deployedPathFiles + "/Images/" + fileName));
                             WebImage.GetImageFromRequest();
 
                             <div style="margin-bottom: 25px;" class="col-md-4" @*style="float: left; display: inline-block;"*@>
 
-                                <img src="/ImageRepo/images/@userName/@fileName" style="width: 300px; height:300px" />
+                                <img src="@GlobalVariables.deployedPathFiles/images/@userName/@fileName" style="width: 300px; height:300px" />
                                 <div>@fileName</div>
 
                             </div>
@@ -58,47 +59,47 @@
 
 
 
-                <div class="col-md-6">
-                    <h2>Delete Images</h2>
-                    <div class="jumbotron" style="padding-top: 15px; padding-bottom: 15px">
-                        <div style="padding: 12px; padding-bottom: 0px">
-                            <input type="checkbox" style="margin-right: 15px" id="select_all" name="select_all"> <b>Select All</b> <br />
-                        </div>
-                        <br />
-                        <div class="ex1">
-                            @foreach (string filePath in filePaths)
-                            {
-                                string fileName = Path.GetFileName(filePath);
-                                files.Add(new ListItem(fileName, "~/ImageRepo/Images/" + fileName));
-                                WebImage.GetImageFromRequest();
-
-                                <input type="checkbox" style="margin-right: 15px" id="@fileName" name="chk" value="@fileName" onclick="verifyCheckboxes()">@fileName <br />
-
-
-                            }
-                        </div>
-                        <br />
-
-                        <form>
-                            <input type="submit" id="delete" value="Delete" onclick="deleteImages()" disabled>
-                        </form>
+            <div class="col-md-6">
+                <h2>Delete Images</h2>
+                <div class="jumbotron" style="padding-top: 15px; padding-bottom: 15px">
+                    <div style="padding: 12px; padding-bottom: 0px">
+                        <input type="checkbox" style="margin-right: 15px" id="select_all" name="select_all"> <b>Select All</b> <br />
                     </div>
+                    <br />
+                    <div class="ex1">
+                        @foreach (string filePath in filePaths)
+                        {
+                            string fileName = Path.GetFileName(filePath);
+                            files.Add(new ListItem(fileName, GlobalVariables.deployedPathFiles + "/Images/" + fileName));
+                            WebImage.GetImageFromRequest();
 
+                            <input type="checkbox" style="margin-right: 15px" id="@fileName" name="chk" value="@fileName" onclick="verifyCheckboxes()">@fileName <br />
+
+
+                        }
+                    </div>
+                    <br />
+
+                    <form>
+                        <input type="submit" id="delete" value="Delete" onclick="deleteImages()" disabled>
+                    </form>
                 </div>
+
             </div>
+        </div>
 
-            }
+    }
 
-            else
-            {
-            Layout = null;
-            Response.Redirect("~/Login/LoginPage");
-            }
-            }
+    else
+    {
+        Layout = null;
+        Response.Redirect("~/Login/LoginPage");
+    }
+}
 
 
 
-            <script>
+<script>
     //let dropArea = document.getElementById('drop-area')
     //    ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
     //        dropArea.addEventListener(eventName, preventDefaults, false)
@@ -271,5 +272,5 @@
         })
     }
 
-                
-            </script>
+
+</script>

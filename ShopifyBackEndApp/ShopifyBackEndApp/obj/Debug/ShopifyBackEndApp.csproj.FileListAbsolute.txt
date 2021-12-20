@@ -101,7 +101,6 @@ C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEnd
 C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\obj\Debug\ShopifyBackEndApp.csprojAssemblyReference.cache
 C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\obj\Debug\ShopifyBackEndApp.csproj.CoreCompileInputs.cache
 C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\obj\Debug\ShopifyBackEndApp.csproj.CopyComplete
 C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\obj\Debug\ShopifyBackEndApp.dll
