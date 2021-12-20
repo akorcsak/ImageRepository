@@ -30,7 +30,6 @@ namespace OriginalCardGen.Models
         //}
 
 
-
         private static string ID_fname = "none";
 
         private static string ID_lname = "none";
