@@ -73,7 +73,7 @@ namespace OriginalCardGen.Controllers
                 var test = db_user.Split('@')[0];
                 Session["usrName"] = test;
 
-                string path = Path.Combine(Server.MapPath("~/Images"), db_user);
+                string path = Path.Combine(Server.MapPath("~/ImageRepo/Images"), db_user);
 
                 if (!Directory.Exists(path))
                 {
