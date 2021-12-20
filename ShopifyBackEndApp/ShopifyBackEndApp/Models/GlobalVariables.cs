@@ -11,7 +11,7 @@ namespace OriginalCardGen.Models
 
         //private static string oracle_conn_str = "Dsn=OracleGold;uid=virania;Pwd=Hos!2020;Trusted_Connection=Yes;";
 
-        public const string deployedPathFiles = "~/ImageRepo";
+        public const string deployedPathFiles = "~";
 
         public static bool sessionStatus = false;
 
