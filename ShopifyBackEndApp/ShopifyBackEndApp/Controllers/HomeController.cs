@@ -10,6 +10,10 @@ namespace ShopifyBackEndApp.Controllers
 {
     public class HomeController : Controller
     {
+        public HomeController()
+            {
+        }
+
         public ActionResult Index()
         {
             string userName = (string)Session["User"];
@@ -49,7 +53,7 @@ namespace ShopifyBackEndApp.Controllers
                 for (int i = 0; i < Request.Files.Count; i++)
                 {
                     var fileName = Path.GetFileName(Request.Files[i].FileName);
-                    Request.Files[i].SaveAs(Path.Combine(@"C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\Images\" + userName, fileName));
+                    Request.Files[i].SaveAs(Path.Combine(Server.MapPath("~/Images"), userName, fileName));
                 }
             }
 
