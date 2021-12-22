@@ -1,4 +1,6 @@
-﻿@{
+﻿@using OriginalCardGen.Models;
+
+@{
     Layout = null;
 }
 
@@ -24,36 +26,36 @@
     @using (Html.BeginForm("ValidateLogin", "Login"))
     {
         <div class="login-container">
-        <div class="wrapper fadeInDown">
-            <div id="formContent">
-                <!-- Tabs Titles -->
-                <!-- Icon -->
-                <div class="fadeIn first">
-                    <h1 style="height: 75px; top:2px"><b>Image Repository</b></h1>
-                    @*<img src="~/Images/logo.jpg" id="icon" style="height:75px; width: 140px; position: relative; top:2px">*@
-                </div>
-
-                <!-- Login Form -->
-                <form>
-                    <input type="email" id="user" class="fadeIn second" name="user" placeholder="login">
-                    <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-                    <input type="submit" class="fadeIn fourth" value="Log In">
-                    <div>
-                        Don't have an Account? <a href="@Url.Action("Register", "Login")"> Register here </a>
+            <div class="wrapper fadeInDown">
+                <div id="formContent">
+                    <!-- Tabs Titles -->
+                    <!-- Icon -->
+                    <div class="fadeIn first">
+                        <h1 style="height: 75px; top:2px"><b>Image Repository (@GlobalVariables.getSetting("DeployedAppName"))</b></h1>
+                        @*<img src="~/Images/logo.jpg" id="icon" style="height:75px; width: 140px; position: relative; top:2px">*@
                     </div>
-                </form>
 
-                <!-- Remind Passowrd -->
-                @*<div id="formFooter">
-            <a class="underlineHover" href="#">Forgot Password?</a>
-        </div>*@
+                    <!-- Login Form -->
+                    <form>
+                        <input type="email" id="user" class="fadeIn second" name="user" placeholder="login">
+                        <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+                        <input type="submit" class="fadeIn fourth" value="Log In">
+                        <div>
+                            Don't have an Account? <a href="@Url.Action("Register", "Login")"> Register here </a>
+                        </div>
+                    </form>
 
-                <h3><strong style="color:red">@TempData["Message"]</strong></h3>
-                <h3><strong style="color:green">@TempData["Message_Green"]</strong></h3>
+                    <!-- Remind Passowrd -->
+                    @*<div id="formFooter">
+                            <a class="underlineHover" href="#">Forgot Password?</a>
+                        </div>*@
 
+                    <h3><strong style="color:red">@TempData["Message"]</strong></h3>
+                    <h3><strong style="color:green">@TempData["Message_Green"]</strong></h3>
+
+                </div>
             </div>
         </div>
-        </div>
     }
-    </body>
+</body>
 </html>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 
@@ -11,14 +12,21 @@ namespace OriginalCardGen.Models
 
         //private static string oracle_conn_str = "Dsn=OracleGold;uid=virania;Pwd=Hos!2020;Trusted_Connection=Yes;";
 
-        public const string deployedPathFiles = "~/ImageRepo";
+        public static string deployedPathFiles = getSetting("DeployedAppName");
 
         public static bool sessionStatus = false;
+
+        public static bool isDebug = false;
 
         public static bool isSeshActive
         {
             get { return sessionStatus; }
             set { sessionStatus = value; }
+        }
+
+        public static string getSetting(string key)
+        {
+            return System.Configuration.ConfigurationManager.AppSettings.Get(key);
         }
 
     public static string sqlConnStr

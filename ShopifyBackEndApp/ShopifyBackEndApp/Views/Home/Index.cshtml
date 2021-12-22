@@ -1,6 +1,6 @@
 ﻿@*@model IEnumerable<ShopifyBackEndApp.Models.AccountImagesModel>*@
 @using System.Web.UI.WebControls;
-@using OriginalCardGen.Models;;
+@using OriginalCardGen.Models;
 
 @{
 
@@ -23,7 +23,6 @@ if (Session["User"] != null)
                             <div style="margin-bottom: 25px;" class="col-md-4" @*style="float: left; display: inline-block;"*@>
 
                                 <img src="@Url.Content(GlobalVariables.deployedPathFiles + "/Images/" + userName + "/" + fileName)" style="width: 300px; height:300px" />
-                                <div>@Url.Content(GlobalVariables.deployedPathFiles + "/Images/" + userName + "/" + fileName)</div>
                                 <div>@fileName</div>
 
                             </div>
