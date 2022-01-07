@@ -12,17 +12,17 @@ if (Session["User"] != null)
                 <div class="ex2">
                     @{
                         string userName = (string)Session["User"];
-                        string[] filePaths = Directory.GetFiles(Server.MapPath(GlobalVariables.deployedPathFiles + "/Images/" + userName));
+                        string[] filePaths = Directory.GetFiles(Path.Combine(Server.MapPath("~/"), "Images", userName));
                         List<ListItem> files = new List<ListItem>();
                         foreach (string filePath in filePaths)
                         {
                             string fileName = Path.GetFileName(filePath);
-                            files.Add(new ListItem(fileName, GlobalVariables.deployedPathFiles + "/Images/" + fileName));
+                            files.Add(new ListItem(fileName, Path.Combine("/Images", userName)));
                             WebImage.GetImageFromRequest();
 
                             <div style="margin-bottom: 25px;" class="col-md-4" @*style="float: left; display: inline-block;"*@>
 
-                                <img src="@Url.Content(GlobalVariables.deployedPathFiles + "/Images/" + userName + "/" + fileName)" style="width: 300px; height:300px" />
+                                <img src="@Url.Content(Path.Combine("/Images", userName, fileName))" style="width: 300px; height:300px" />
                                 <div>@fileName</div>
 
                             </div>
@@ -69,7 +69,7 @@ if (Session["User"] != null)
                         @foreach (string filePath in filePaths)
                         {
                             string fileName = Path.GetFileName(filePath);
-                            files.Add(new ListItem(fileName, GlobalVariables.deployedPathFiles + "/Images/" + fileName));
+                            files.Add(new ListItem(fileName, Path.Combine(Server.MapPath("~/"), "Images", fileName)));
                             WebImage.GetImageFromRequest();
 
                             <input type="checkbox" style="margin-right: 15px" id="@fileName" name="chk" value="@fileName" onclick="verifyCheckboxes()">@fileName <br />

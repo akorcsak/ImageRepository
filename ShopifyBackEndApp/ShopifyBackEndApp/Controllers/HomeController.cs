@@ -18,22 +18,28 @@ namespace ShopifyBackEndApp.Controllers
         public ActionResult Index()
         {
             string userName = (string)Session["User"];
-            string[] filePaths = Directory.GetFiles(Server.MapPath(GlobalVariables.deployedPathFiles + "/Images/" + userName));
-            List<ListItem> files = new List<ListItem>();
-            foreach (string filePath in filePaths)
+
+            if(!string.IsNullOrEmpty(userName))
             {
-                string fileName = Path.GetFileName(filePath);
-                files.Add(new ListItem(fileName, GlobalVariables.deployedPathFiles + "/Images/" + fileName));
+                string[] filePaths = Directory.GetFiles(Path.Combine(Server.MapPath("~/"), "Images", userName));
+                //Path.Combine(Server.MapPath("~/"), "Images", db_user)
+                List<ListItem> files = new List<ListItem>();
+                foreach (string filePath in filePaths)
+                {
+                    string fileName = Path.GetFileName(filePath);
+                    files.Add(new ListItem(fileName, Path.Combine("Images", fileName)));
+                }
+
+                return View(files);
             }
 
-
-            return View(files);
+            return Redirect("~/Login/LoginPage");
         }
 
         public ActionResult DeleteFiles(string[] fileName)
         {
             string userName = (string)Session["User"];
-            string[] filePaths = Directory.GetFiles(Path.Combine(Server.MapPath(GlobalVariables.deployedPathFiles + "/Images"), userName));
+            string[] filePaths = Directory.GetFiles(Path.Combine(Server.MapPath("~/"), "Images", userName));
             foreach (string filePath in filePaths)
             {
                 string file = Path.GetFileName(filePath);
@@ -54,7 +60,7 @@ namespace ShopifyBackEndApp.Controllers
                 for (int i = 0; i < Request.Files.Count; i++)
                 {
                     var fileName = Path.GetFileName(Request.Files[i].FileName);
-                    Request.Files[i].SaveAs(Path.Combine(Server.MapPath(GlobalVariables.deployedPathFiles + "/Images"), userName, fileName));
+                    Request.Files[i].SaveAs(Path.Combine(Server.MapPath("~/"), "Images", userName, fileName));
                 }
             }
 
