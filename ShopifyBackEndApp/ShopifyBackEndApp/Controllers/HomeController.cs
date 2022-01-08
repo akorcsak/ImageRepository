@@ -42,7 +42,7 @@ namespace ShopifyBackEndApp.Controllers
             string userName = (string)Session["User"];
             string[] filePaths = Directory.GetFiles(Path.Combine(Server.MapPath("~/"), "Images", userName));
             //var logPath = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/"), "Logs", "log.txt");
-            var logPath = "C://Logs/log.txt";
+            var logPath = @"C:\Logs\log.txt";
             var log = new LoggerConfiguration()
                 .WriteTo.File(logPath)
                 .CreateLogger();
