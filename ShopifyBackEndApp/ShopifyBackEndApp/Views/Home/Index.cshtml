@@ -263,7 +263,7 @@ if (Session["User"] != null)
 
         $.ajax({
             type: "POST",
-            url: "/Home/DeleteFiles/",
+            url: "@(Url.Action("DeleteFiles", "Home"))",
             data: { fileName: fileList },
             success: function (result) {
                 console.log("Succesful!")
