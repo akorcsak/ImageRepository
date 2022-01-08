@@ -37,11 +37,12 @@ namespace ShopifyBackEndApp.Controllers
             return Redirect("~/Login/LoginPage");
         }
 
-        public ActionResult DeleteFiles(string[] fileNames)
+        public ActionResult DeleteFiles(string[] fileName)
         {
             string userName = (string)Session["User"];
             string[] filePaths = Directory.GetFiles(Path.Combine(Server.MapPath("~/"), "Images", userName));
-            var logPath = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/"), "Logs", "log.txt");
+            //var logPath = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/"), "Logs", "log.txt");
+            var logPath = "C://Logs/log.txt";
             var log = new LoggerConfiguration()
                 .WriteTo.File(logPath)
                 .CreateLogger();
@@ -54,9 +55,9 @@ namespace ShopifyBackEndApp.Controllers
                 log.Information(filePath);
 
                 string file = Path.GetFileName(filePath);
-                if (fileNames.Contains(file))
+                if (fileName.Contains(file))
                 {
-                    log.Information($"{fileNames}:{file}");
+                    log.Information($"{fileName}:{file}");
                     System.IO.File.Delete(filePath);
                 }
             }
