@@ -22,7 +22,7 @@ if (Session["User"] != null)
 
                             <div style="margin-bottom: 25px;" class="col-md-4" @*style="float: left; display: inline-block;"*@>
                                 
-                                <img src="@Url.Content($"{GlobalVariables.deployedPathFiles}/Images/{userName}/{fileName}")" style="width: 300px; height:300px" />
+                                <img src="@Url.Content($"/Images/{userName}/{fileName}")" style="width: 300px; height:300px" />
                                 <div>@fileName</div>
 
                             </div>
