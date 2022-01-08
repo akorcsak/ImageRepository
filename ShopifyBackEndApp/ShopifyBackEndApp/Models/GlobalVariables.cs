@@ -14,6 +14,8 @@ namespace OriginalCardGen.Models
 
         public static string deployedPathFiles = getSetting("DeployedAppName");
 
+        public static string logging = getSetting("Logging");
+
         public static bool sessionStatus = false;
 
         public static bool isDebug = false;

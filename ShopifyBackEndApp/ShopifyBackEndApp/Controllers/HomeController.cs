@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using OriginalCardGen.Models;
+using Serilog;
 
 namespace ShopifyBackEndApp.Controllers
 {
@@ -40,14 +41,24 @@ namespace ShopifyBackEndApp.Controllers
         {
             string userName = (string)Session["User"];
             string[] filePaths = Directory.GetFiles(Path.Combine(Server.MapPath("~/"), "Images", userName));
+            var logPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Logs/log.txt");
+            var log = new LoggerConfiguration()
+                .WriteTo.File(logPath)
+                .CreateLogger();
+
             foreach (string filePath in filePaths)
             {
+                log.Information(filePath);
+
                 string file = Path.GetFileName(filePath);
                 if (fileName.Contains(file))
                 {
+                    log.Information("True");
                     System.IO.File.Delete(filePath);
                 }
             }
+
+            
 
             return RedirectToAction("Index");
         }

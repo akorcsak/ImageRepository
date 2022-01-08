@@ -109,3 +109,8 @@ C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEnd
 C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\obj\Debug\ShopifyBackEndApp.csproj.CopyComplete
 C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\obj\Debug\ShopifyBackEndApp.dll
 C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\obj\Debug\ShopifyBackEndApp.pdb
+C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\bin\Serilog.dll
+C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\bin\Serilog.Sinks.File.dll
+C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\bin\Serilog.xml
+C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\bin\Serilog.Sinks.File.pdb
+C:\Users\Andrei\source\repos\ShopifyBackEnd2022\ShopifyBackEndApp\ShopifyBackEndApp\bin\Serilog.Sinks.File.xml
