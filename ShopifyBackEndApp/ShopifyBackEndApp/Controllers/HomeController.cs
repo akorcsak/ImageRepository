@@ -49,7 +49,7 @@ namespace ShopifyBackEndApp.Controllers
                 }
             }
 
-            return View();
+            return Redirect("~/Home/Index");
         }
 
         public ActionResult UploadFiles()
