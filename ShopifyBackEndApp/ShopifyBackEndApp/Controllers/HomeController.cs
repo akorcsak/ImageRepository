@@ -12,8 +12,11 @@ namespace ShopifyBackEndApp.Controllers
 {
     public class HomeController : Controller
     {
+
         public HomeController()
             {
+
+
         }
 
         public ActionResult Index()
@@ -24,14 +27,31 @@ namespace ShopifyBackEndApp.Controllers
             {
                 string[] filePaths = Directory.GetFiles(Path.Combine(Server.MapPath("~/"), "Images", userName));
                 //Path.Combine(Server.MapPath("~/"), "Images", db_user)
-                List<ListItem> files = new List<ListItem>();
-                foreach (string filePath in filePaths)
+                var logPath = @"C:\Logs\log.txt";
+                var log = new LoggerConfiguration()
+                    .WriteTo.File(logPath)
+                    .CreateLogger();
+
+                log.Information(userName);
+
+                if (filePaths.Length == 0)
                 {
-                    string fileName = Path.GetFileName(filePath);
-                    files.Add(new ListItem(fileName, Path.Combine("Images", fileName)));
+                    return View("EmptyContent");
                 }
 
-                return View(files);
+                else
+                {
+                    List<ListItem> files = new List<ListItem>();
+                    foreach (string filePath in filePaths)
+                    {
+                        string fileName = Path.GetFileName(filePath);
+                        files.Add(new ListItem(fileName, Path.Combine("Images", fileName)));
+                    }
+
+                    return View("Index", files);
+                }
+
+                
             }
 
             return Redirect("~/Login/LoginPage");
@@ -42,22 +62,22 @@ namespace ShopifyBackEndApp.Controllers
             string userName = (string)Session["User"];
             string[] filePaths = Directory.GetFiles(Path.Combine(Server.MapPath("~/"), "Images", userName));
             //var logPath = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/"), "Logs", "log.txt");
-            var logPath = @"C:\Logs\log.txt";
-            var log = new LoggerConfiguration()
-                .WriteTo.File(logPath)
-                .CreateLogger();
+            //var logPath = @"C:\Logs\log.txt";
+            //var log = new LoggerConfiguration()
+            //    .WriteTo.File(logPath)
+            //    .CreateLogger();
 
-            log.Information("Delete");
+            //log.Information("Delete");
 
 
             foreach (string filePath in filePaths)
             {
-                log.Information(filePath);
+                //log.Information(filePath);
 
                 string file = Path.GetFileName(filePath);
                 if (fileName.Contains(file))
                 {
-                    log.Information($"{fileName}:{file}");
+                    //log.Information($"{fileName}:{file}");
                     System.IO.File.Delete(filePath);
                 }
             }

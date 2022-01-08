@@ -8,30 +8,8 @@ if (Session["User"] != null)
     {
 
         <div style="padding-top: 100px;">
-            <div class="jumbotron" style="height:800px">
-                <div class="ex2">
-                    @{
-                        string userName = (string)Session["User"];
-                        string[] filePaths = Directory.GetFiles(Path.Combine(Server.MapPath("~/"), "Images", userName));
-                        List<ListItem> files = new List<ListItem>();
-                        foreach (string filePath in filePaths)
-                        {
-                            string fileName = Path.GetFileName(filePath);
-                            files.Add(new ListItem(fileName, Path.Combine("/Images", userName)));
-                            WebImage.GetImageFromRequest();
-
-                            <div style="margin-bottom: 25px;" class="col-md-4" @*style="float: left; display: inline-block;"*@>
-                                
-                                <img src="@Url.Content($"~/Images/{userName}/{fileName}")" style="width: 300px; height:300px" />
-                                <div>@fileName</div>
-
-                            </div>
-
-                        }
-                    }
-                </div>
-
-
+            <div class="jumbotron" style="height:150px">
+                <center><h4>There are currently no images uploaded!</h4></center>
             </div>
         </div>
 
@@ -66,7 +44,7 @@ if (Session["User"] != null)
                     </div>
                     <br />
                     <div class="ex1">
-                        @foreach (string filePath in filePaths)
+                        @*@foreach (string filePath in filePaths)
                         {
                             string fileName = Path.GetFileName(filePath);
                             files.Add(new ListItem(fileName, Path.Combine(Server.MapPath("~/"), "Images", fileName)));
@@ -75,7 +53,7 @@ if (Session["User"] != null)
                             <input type="checkbox" style="margin-right: 15px" id="@fileName" name="chk" value="@fileName" onclick="verifyCheckboxes()">@fileName <br />
 
 
-                        }
+                        }*@
                     </div>
                     <br />
 
