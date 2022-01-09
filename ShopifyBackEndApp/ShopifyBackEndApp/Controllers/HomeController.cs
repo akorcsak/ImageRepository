@@ -61,23 +61,14 @@ namespace ShopifyBackEndApp.Controllers
         {
             string userName = (string)Session["User"];
             string[] filePaths = Directory.GetFiles(Path.Combine(Server.MapPath("~/"), "Images", userName));
-            //var logPath = Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/"), "Logs", "log.txt");
-            //var logPath = @"C:\Logs\log.txt";
-            //var log = new LoggerConfiguration()
-            //    .WriteTo.File(logPath)
-            //    .CreateLogger();
-
-            //log.Information("Delete");
 
 
             foreach (string filePath in filePaths)
             {
-                //log.Information(filePath);
 
                 string file = Path.GetFileName(filePath);
                 if (fileName.Contains(file))
                 {
-                    //log.Information($"{fileName}:{file}");
                     System.IO.File.Delete(filePath);
                 }
             }
