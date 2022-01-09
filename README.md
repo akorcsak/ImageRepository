@@ -3,6 +3,7 @@ This application was created for the Winter 2022 - Shopify Developer Intern Chal
 
 # Table of Contents
 * [Features](#features)
+* [Screenshots](#screenshots)
 * [Technologies Used](#technologies-used)
 * [BackEnd Functionality](#backend-functionality)
 
@@ -18,6 +19,12 @@ To upload images, press on the "Select some files" button and select the images 
 
 ## Delete Images
 For each image uploaded into the application, the name of the file with a checkbox next to it will be displayed in the Delete Images box. The user can select which images they would like to remove. If the "Select All" option is selected, all the images will be selected. Once the delete button is pressed all the selected file names will permanently be removed from the application. If no images are currently uploaded into the application, the Delete Images box will remain empty.
+
+# Screenshots
+![image](https://user-images.githubusercontent.com/62719168/148697611-0b5cce81-60cb-44b8-b690-846fc0356ebc.png)
+![image](https://user-images.githubusercontent.com/62719168/148697630-4f03f2e4-7993-48af-a7e8-15ca2ba0a98c.png)
+![image](https://user-images.githubusercontent.com/62719168/148696903-84290f72-481a-44d0-afe0-6fa864af867a.png)
+![image](https://user-images.githubusercontent.com/62719168/148696929-e509b5b1-54f7-4ac8-af28-c893d543965e.png)
 
 # Technologies Used
 - ASP.NET MVC 5 Framework
