@@ -1,5 +1,5 @@
 # ImageRepository
-This application was created for the Winter 2022 - Shopify Developer Intern Challenge. It is used to safely store images uploaded by users.
+This application was designed for the Winter 2022 - Shopify Developer Intern Challenge. It is used to store user-uploaded photos in a secure manner.
 
 # Table of Contents
 * [Features](#features)
@@ -9,16 +9,16 @@ This application was created for the Winter 2022 - Shopify Developer Intern Chal
 
 # Features
 ## Login and Register
-The first page of the application will bring the user to the login page to enter the email and password. If the user does not have an existing account, click on the "Register here" link under the Log in button. When registering, you will be asked to enter the email you would like to use for the account and the password. Once you press register, a message will display that your account has been succesfully created and the credentials can now be used in the Sign in page.
+The user will be directed to the login screen on the first page of the application, where they will input their email and password. Click the "Register here" link under the Log in button if the user does not have an account. When you register, you will be prompted to enter your preferred email address as well as a password. After pressing register, you'll get a notification stating that your account has been successfully created and that your credentials can now be used on the Sign in page.
 
 ## Main Page
-Once logged in into the appllication, all the uploaded images will be displayed on the main page. Up to 6 images can be displayed at a time with the name of files underneath them. To see more pictures, theres a scroll feature included to scroll through all the images. If this is a brand new account or no images are currently uploaded, there will be a message displaying, "There are currently no images uploaded!". On the top right corner there is a log out button with the name of the current user logged in next to it.
+All of the submitted images will be displayed on the main page once you've entered into the app. At any given moment, up to 6 photos can be displayed with the names of files beneath them. A scroll tool is included to scroll through all of the images if you want to see more. A message saying, "There are currently no photographs uploaded!" will be displayed if this is a fresh new account or if there are no images currently submitted. A log out button is located in the upper right corner, next to which is the name of the current user logged in.
 
 ## Upload Photos
-To upload photos, press on the "Select some files" button and select the images you want to upload. Once selected, wait until a preview of all the images appear in the box, and press save. The uploaded images will display on the main page.
+To upload photos, select the images you want to upload using the "Select some files" button. Wait for a preview of all the images to display in the box after you've selected them, then press save. The images you've posted will appear on the main page.
 
 ## Delete Images
-For each image uploaded into the application, the name of the file with a checkbox next to it will be displayed in the Delete Images box. The user can select which images they would like to remove. If the "Select All" option is selected, all the images will be selected. Once the delete button is pressed all the selected file names will permanently be removed from the application. If no images are currently uploaded into the application, the Delete Images box will remain empty.
+The name of each image entered into the application will be displayed in the Delete Images box, along with a checkbox next to it. The user can choose which images they want to delete. If you choose "Select All," all of the images will be picked. When you touch the delete button, all of the selected file names will be permanently erased from the application. The Delete Images box will be empty if no images have been submitted into the application.
 
 # Screenshots
 ![image](https://user-images.githubusercontent.com/62719168/148697611-0b5cce81-60cb-44b8-b690-846fc0356ebc.png)
@@ -38,4 +38,4 @@ For each image uploaded into the application, the name of the file with a checkb
 - Deployed using Azure DevOps
 
 # BackEnd Functionality
-The account information containing the emails and passwords set by all accounts are stored into a SQL database. For security purposes, the passwords of all users are encrypted into the database. Each user has its own individual folder named after their email where all images are being stored. The user's folder are automatically created if it does not already exist, once the user logs in into the application
+A SQL database is used to hold account information, including emails and passwords set by all accounts. All users' passwords are encrypted into the database for security reasons. Each user gets their own folder called after their email address, which contains all of their images. When a user logs into the application, the user's folder is automatically generated if it does not already exist.
