@@ -1,13 +1,13 @@
 # ImageRepository
 This application was created for the Winter 2022 - Shopify Developer Intern Challenge. It is used to safely store images uploaded by users.
 
-# Features
-Log in / Register
-Main page
-Upload Images
-Delete Images
+# Table of Contents
+* [Features](#features)
+* [Technologies Used](#technologies-used)
+* [BackEnd Functionality](#backend-functionality)
 
-## Log in / Register
+# Features
+## Login and Register
 The first page of the application will bring the user to the login page to enter the email and password. If the user does not have an existing account, click on the "Register here" link under the Log in button. When registering, you will be asked to enter the email you would like to use for the account and the password. Once you press register, a message will display that your account has been succesfully created and the credentials can now be used in the Sign in page.
 
 ## Main Page
@@ -19,14 +19,14 @@ To upload images, press on the "Select some files" button and select the images 
 ## Delete Images
 For each image uploaded into the application, the name of the file with a checkbox next to it will be displayed in the Delete Images box. The user can select which images they would like to remove. If the "Select All" option is selected, all the images will be selected. Once the delete button is pressed all the selected file names will permanently be removed from the application. If no images are currently uploaded into the application, the Delete Images box will remain empty.
 
-# Tools Used
-ASP.NET MVC 5 Framework
-C#
-Javascript
-HTML
-CSS
-SQL
-Deployed using Azure DevOps
+# Technologies Used
+- ASP.NET MVC 5 Framework
+- C#
+- Javascript
+- HTML
+- CSS
+- SQL
+- Deployed using Azure DevOps
 
 # BackEnd Functionality
-The account information containing the emails and passwords set by all accounts are stored into a SQL database. For security purposes, the passwords of all users are encrypted into the database. Each user has its own individual folder named after their email where all images are being stored. The user's folder are automatically created if it does not already exist, once the user logins into the application
+The account information containing the emails and passwords set by all accounts are stored into a SQL database. For security purposes, the passwords of all users are encrypted into the database. Each user has its own individual folder named after their email where all images are being stored. The user's folder are automatically created if it does not already exist, once the user logs in into the application
