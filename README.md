@@ -23,8 +23,10 @@ For each image uploaded into the application, the name of the file with a checkb
 # Screenshots
 ![image](https://user-images.githubusercontent.com/62719168/148697611-0b5cce81-60cb-44b8-b690-846fc0356ebc.png)
 ![image](https://user-images.githubusercontent.com/62719168/148697630-4f03f2e4-7993-48af-a7e8-15ca2ba0a98c.png)
-![image](https://user-images.githubusercontent.com/62719168/148696903-84290f72-481a-44d0-afe0-6fa864af867a.png)
-![image](https://user-images.githubusercontent.com/62719168/148696929-e509b5b1-54f7-4ac8-af28-c893d543965e.png)
+![image](https://user-images.githubusercontent.com/62719168/148697749-6cc400d1-8645-4d03-aed3-af284c12273a.png)
+![image](https://user-images.githubusercontent.com/62719168/148697718-ee628948-5f6c-4d0a-845c-8e8009e485b2.png)
+
+
 
 # Technologies Used
 - ASP.NET MVC 5 Framework
