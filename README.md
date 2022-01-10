@@ -10,16 +10,26 @@ This application was designed for the Winter 2022 - Shopify Developer Intern Cha
 
 # Features
 ## Login and Register
-The user will be directed to the login screen on the first page of the application, where they will input their email and password. Click the "Register here" link under the Log in button if the user does not have an account. When you register, you will be prompted to enter your preferred email address as well as a password. After pressing register, you'll get a notification stating that your account has been successfully created and that your credentials can now be used on the Sign in page.
+ - The user will be directed to the login screen on the first page of the application, where they will input their email and password. 
+ - Click the "Register here" link under the Log in button if the user does not have an account. 
+ - When registering, you will be prompted to enter your preferred email address as well as a password. 
+ - After pressing register, you'll get a notification stating that your account has been successfully created and that your credentials can now be used on the Sign in page.
 
 ## Main Page
-All of the submitted images will be displayed on the main page once you've entered into the app. At any given moment, up to 6 photos can be displayed with the names of files beneath them. A scroll tool is included to scroll through all of the images if you want to see more. A message saying, "There are currently no photographs uploaded!" will be displayed if this is a fresh new account or if there are no images currently submitted. A log out button is located in the upper right corner, next to which is the name of the current user logged in.
+ - All of the submitted images will be displayed on the main page once you've entered into the app. 
+ - At any given moment, up to 6 photos can be displayed with the names of the files beneath them.
+ - A scroll tool is included to scroll through all of the images if you want to see more. 
+ - A message saying, "There are currently no photographs uploaded!" will be displayed if this is a fresh new account or if there are no images currently submitted. 
+ - A log out button is located in the upper right corner, next to which is the name of the current user logged in.
 
 ## Upload Photos
-To upload photos, select the images you want to upload using the "Select some files" button. Wait for a preview of all the images to display in the box after you've selected them, then press save. The images you've posted will appear on the main page.
+ - To upload photos, select the images you want to upload using the "Select some files" button. 
+ - Wait for a preview of all the images to display in the box after you've selected them, then press save. The images you've posted will appear on the main page.
 
 ## Delete Images
-The name of each image entered into the application will be displayed in the Delete Images box, along with a checkbox next to it. The user can choose which images they want to delete. If you choose "Select All," all of the images will be picked. When you touch the delete button, all of the selected file names will be permanently erased from the application. The Delete Images box will be empty if no images have been submitted into the application.
+ - The name of each image entered into the application will be displayed in the Delete Images box, along with a checkbox next to it. 
+ - The user can choose which images they want to delete. If you choose "Select All," all of the images will be picked.
+ - When you press the delete button, all of the selected file names will be permanently erased from the application and the Delete Images box will be empty since there are no images saved in the application.
 
 # Screenshots
 ![image](https://user-images.githubusercontent.com/62719168/148697611-0b5cce81-60cb-44b8-b690-846fc0356ebc.png)
