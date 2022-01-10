@@ -6,6 +6,7 @@ This application was designed for the Winter 2022 - Shopify Developer Intern Cha
 * [Screenshots](#screenshots)
 * [Technologies Used](#technologies-used)
 * [BackEnd Functionality](#backend-functionality)
+* [Running Application](#running-application)
 
 # Features
 ## Login and Register
@@ -39,3 +40,11 @@ The name of each image entered into the application will be displayed in the Del
 
 # BackEnd Functionality
 A SQL database is used to hold account information, including emails and passwords set by all accounts. All users' passwords are encrypted into the database for security reasons. Each user gets their own folder called after their email address, which contains all of their images. When a user logs into the application, the user's folder is automatically generated if it does not already exist.
+
+# Running Application
+Open the command line at the preferred location to clone the repository by executing the command below:
+- git clone https://github.com/akorcsak/ImageRepository.git
+
+Once the repository has been succesfully cloned, open the ImageRepo.sln in Visual Studio and run the application.
+
+The application is also publicly deployed and can be accessed through this link: http://alevel23.asuscomm.com/imagerepo
