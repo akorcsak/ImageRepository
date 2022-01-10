@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-
 using System.Text;
-using System.Diagnostics;
 using OriginalCardGen.Models;
 using System.Data;
 using System.Data.SqlClient;
@@ -27,7 +22,7 @@ namespace OriginalCardGen.Controllers
         {
             if ((user == "" || user == null) || (password == "" || password == null))
             {
-                TempData["Message"] = "the fields cannot be empty";
+                TempData["Message"] = "The fields cannot be empty";
                 return View("LoginPage");
             }
             var q = _db.AccountTables;
@@ -41,7 +36,6 @@ namespace OriginalCardGen.Controllers
             sqlConn.Open();
             var db_user = "";
             var db_pass = "";
-            //var db_role = "";
 
             SqlDataReader reader = getCredentials.ExecuteReader();
 
@@ -50,8 +44,7 @@ namespace OriginalCardGen.Controllers
             {
                 db_user = reader.GetString(0);
                 db_pass = reader.GetString(1);
-                //db_role = reader.GetString(2);
-                //db_active = reader.GetBoolean(3);
+
                 if (db_pass != null)
                 {
                     decodedString = Encoding.UTF8.GetString(Convert.FromBase64String(db_pass));
@@ -67,8 +60,7 @@ namespace OriginalCardGen.Controllers
                 GlobalVariables.isSeshActive = true;
                 Session["User"] = db_user;
                 Session["CurrentPass"] = decodedString;
-                //Session["Role"] = db_role;
-                //Session["isActive"] = db_active;
+
                 TempData["Message"] = "";
                 var test = db_user.Split('@')[0];
                 Session["usrName"] = test;
@@ -221,9 +213,7 @@ namespace OriginalCardGen.Controllers
             }
             sqlConn.Close();
 
-
             var encodedPass = Convert.ToBase64String(Encoding.UTF8.GetBytes(firstpassword));
-
 
             try
             {
@@ -238,7 +228,6 @@ namespace OriginalCardGen.Controllers
             {
                 Console.WriteLine($"ERROR: {ex.StackTrace}");
             }
-
 
 
             TempData["Message_Green"] = "User has been succesfully created! You can now log in with the new credentials.";
