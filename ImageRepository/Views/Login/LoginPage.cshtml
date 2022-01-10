@@ -32,7 +32,6 @@
                     <!-- Icon -->
                     <div class="fadeIn first">
                         <h1 style="height: 75px; top:2px"><b>Image Repository</b></h1>
-                        @*<img src="~/Images/logo.jpg" id="icon" style="height:75px; width: 140px; position: relative; top:2px">*@
                     </div>
 
                     <!-- Login Form -->
@@ -44,11 +43,6 @@
                             Don't have an Account? <a href="@Url.Action("Register", "Login")"> Register here </a>
                         </div>
                     </form>
-
-                    <!-- Remind Passowrd -->
-                    @*<div id="formFooter">
-                            <a class="underlineHover" href="#">Forgot Password?</a>
-                        </div>*@
 
                     <h3><strong style="color:red">@TempData["Message"]</strong></h3>
                     <h3><strong style="color:green">@TempData["Message_Green"]</strong></h3>

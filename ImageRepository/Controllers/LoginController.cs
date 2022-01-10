@@ -74,7 +74,7 @@ namespace OriginalCardGen.Controllers
 
                 return Redirect("~/Home/Index");
             }
-            TempData["Message"] = "The user or password are incorrect";
+            TempData["Message"] = "The email or password are incorrect";
             return View("LoginPage");
         }
 
@@ -88,55 +88,7 @@ namespace OriginalCardGen.Controllers
 
         }
 
-        [HttpGet]
-        public ActionResult ChangePass(string crntPass, string newPass)
-        {
-            var q = _db.AccountTables;
-
-            SqlConnection sqlConn = new SqlConnection(GlobalVariables.sqlConnStr);
-            SqlCommand sqlComm = new SqlCommand();
-            sqlComm = sqlConn.CreateCommand();
-
-            SqlCommand checkPass = new SqlCommand("select UserEmail from dbo.AccountTables where userEmail = @userEmail and userPass = @currentPass", sqlConn);
-            checkPass.Parameters.Add("@userEmail", SqlDbType.NVarChar);
-            checkPass.Parameters["@userEmail"].Value = Session["User"];
-
-            checkPass.Parameters.Add("@currentPass", SqlDbType.NVarChar);
-            checkPass.Parameters["@currentPass"].Value = Convert.ToBase64String(Encoding.UTF8.GetBytes(crntPass));
-            sqlConn.Open();
-            var isValid = "";
-            SqlDataReader reader = checkPass.ExecuteReader();
-            while (reader.Read())
-            {
-                isValid = reader.GetString(0);
-            }
-            sqlConn.Close();
-
-            if (isValid != "")
-            {
-                sqlComm.CommandText = "update Accounts set userPass = @encryptedPass where userEmail = @userEmail";
-
-                sqlComm.Parameters.Add("@encryptedPass", SqlDbType.NVarChar);
-                sqlComm.Parameters["@encryptedPass"].Value = Convert.ToBase64String(Encoding.UTF8.GetBytes(newPass));
-
-                sqlComm.Parameters.Add("@userEmail", SqlDbType.NVarChar);
-                sqlComm.Parameters["@userEmail"].Value = Session["User"];
-
-                sqlConn.Open();
-                sqlComm.ExecuteNonQuery();
-                sqlConn.Close();
-            }
-            else
-            {
-                return Content("false");
-
-            }
-
-
-
-            return Content("true");
-        }
-
+ 
 
         [HttpGet]
         public ActionResult AddUser(string email, string role, string temp_pass, string conf_temp)
@@ -157,27 +109,6 @@ namespace OriginalCardGen.Controllers
 
         }
 
-
-        [HttpGet]
-        public ActionResult DeleteUser(string Id)
-        {
-
-            var q = _db.AccountTables;
-
-            SqlConnection sqlConn = new SqlConnection(GlobalVariables.sqlConnStr);
-            SqlCommand sqlComm = new SqlCommand();
-            sqlComm = sqlConn.CreateCommand();
-
-
-            sqlComm.CommandText = @"delete from dbo.AccountTables where Id = " + Id;
-
-
-            sqlConn.Open();
-            sqlComm.ExecuteNonQuery();
-            sqlConn.Close();
-
-            return Redirect("~/Home/Admin/");
-        }
 
         public ActionResult Register()
         {

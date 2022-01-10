@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Web;
-
-namespace OriginalCardGen.Models
+﻿namespace OriginalCardGen.Models
 {
     public static class GlobalVariables
     {
         private static string sql_conn_str = "Data Source=SQL;Initial Catalog=ShopifyImageRepository;User ID=sa;Password=superior";
-
-        //private static string oracle_conn_str = "Dsn=OracleGold;uid=virania;Pwd=Hos!2020;Trusted_Connection=Yes;";
 
         public static string deployedPathFiles = getSetting("DeployedAppName");
 
@@ -35,11 +27,6 @@ namespace OriginalCardGen.Models
         {
             get { return sql_conn_str; }
         }
-
-        //public static string oracleConnStr
-        //{
-        //    get { return oracle_conn_str;  }
-        //}
 
 
         private static string ID_fname = "none";
